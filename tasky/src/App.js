@@ -1,7 +1,8 @@
+import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Task from './components/Task';
-import React, { useState } from 'react';
+
 
 function App() {
   const [ taskState, setTaskState ] = useState({
@@ -12,7 +13,7 @@ function App() {
     ]
   });
 
- return (
+  return (
     <div className="container">
       <h1>Tasky</h1>
       <Task title={taskState.tasks[0].title} deadline={taskState.tasks[0].deadline} description={taskState.tasks[0].description} />
