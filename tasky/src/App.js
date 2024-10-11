@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Task from './components/Task';
+import AddTaskForm from './components/Form';
 
 
 function App() {
@@ -30,16 +31,17 @@ function App() {
     <div className="container">
       <h1>Tasky</h1>
       {taskState.tasks.map((task, index) => (              
-    <Task 
-      title={task.title}
-      description={task.description}
-      deadline={task.deadline}
-      key={task.id}
-      done={task.done}
-      markDone={() => doneHandler(index)}
-      deleteTask = {() => deleteHandler(index)}
-    />
-  ))}
+        <Task 
+          title={task.title}
+          description={task.description}
+          deadline={task.deadline}
+          key={task.id}
+          done={task.done}
+          markDone={() => doneHandler(index)}
+          deleteTask = {() => deleteHandler(index)}
+        />
+      ))}
+      <AddTaskForm />
     </div>
   );
 }
