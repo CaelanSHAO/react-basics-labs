@@ -9,9 +9,9 @@ import { v4 as uuidv4 } from 'uuid';
 function App() {
   const [ taskState, setTaskState ] = useState({
     tasks: [
-      { id: 1, title:"Dishes", description: "Empty dishwasher", deadline: "Today", done: false },
-      { id: 2, title: "Laundry", description: "Fold clothes and put away", deadline: "Tomorrow", done: false },
-      { id: 3, title: "Tidy up", deadline: "Today", done: false}
+      { id: 1, title:"Dishes", priority:"Low",completed:false,description: "Empty dishwasher", deadline: "Today", done: false },
+      { id: 2, title: "Laundry", priority:"Medium",completed:false,description: "Fold clothes and put away", deadline: "Tomorrow", done: false },
+      { id: 3, title: "Tidy up", priority:"High",completed:false,deadline: "Today", done: false}
     ]
   });
 
@@ -33,6 +33,10 @@ function App() {
           break;
       case "deadline":
           form.deadline = event.target.value;
+          break;
+
+      case "priority":
+          form.priority = event.target.value;  // 处理优先级
           break;
       default:
           form = formState;
@@ -71,18 +75,21 @@ function App() {
     <div className="container">
       <h1>Tasky</h1>
       {taskState.tasks.map((task, index) => (              
-        <Task 
-          title={task.title}
-          description={task.description}
-          deadline={task.deadline}
-          key={task.id}
-          done={task.done}
-          markDone={() => doneHandler(index)}
-          deleteTask = {() => deleteHandler(index)}
-        />
+        <Task
+        title={task.title}
+        description={task.description}
+        deadline={task.deadline}
+        priority={task.priority}  // 添加优先级
+        key={task.id}
+        done={task.done}
+        markDone={() => doneHandler(index)}
+        deleteTask={() => deleteHandler(index)}
+      />
+      
       ))}
        <AddTaskForm submit={formSubmitHandler} change={formChangeHandler} />
     </div>
+    
   );
 }
 
