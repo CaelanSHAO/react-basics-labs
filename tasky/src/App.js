@@ -62,7 +62,14 @@ useEffect(() => {
   }
 
 
-  
+  const deleteHandler = (taskIndex) => {
+    const tasks = [...taskState.tasks];
+    const id=tasks[taskIndex]._id;
+    tasks.splice(taskIndex, 1);
+    deleteTask(id);
+    setTaskState({tasks});
+    }
+
 
   const formSubmitHandler = async (event) => {
     event.preventDefault();
